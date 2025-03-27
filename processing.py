@@ -70,6 +70,25 @@ for index, row in neg_dataset.iterrows():
 			continue
 	neg_tweet_list.append(new_text_chunk)
 
+pos_dataset = pd.read_csv("data/pos_tweets_text.csv")
+neg_dataset = pd.read_csv("data/neg_tweets_text.csv")
+tweets = pd.read_csv("data/tweets_text.csv")
+
+hyperlinks = r"https?:\/\/[^\s]+[\r\n]*"
+
+def remove_hyperlinks(text):
+    if isinstance(text, str):
+        return re.sub(hyperlinks, '', text)
+    return text
+
+pos_dataset = pos_dataset.applymap(remove_hyperlinks)
+neg_dataset = neg_dataset.applymap(remove_hyperlinks)
+tweets = tweets.applymap(remove_hyperlinks)
+
+pos_dataset.to_csv('data/pos_tweets_text.csv', index=False)
+neg_dataset.to_csv('data/neg_tweets_text.csv', index=False)
+tweets.to_csv('data/tweets_text.csv', index=False)
+
 
 
 # tokenize the tweets
