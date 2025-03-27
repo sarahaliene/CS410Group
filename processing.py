@@ -27,3 +27,5 @@ with open(neg_tweet_file) as fp:
 with open(tweet_file) as fp:
 	json2csv(fp, "data/tweets_text.csv", ['text'])
 
+tokenizer = TweetTokenizer(strip_handles = True, reduce_len = True)
+
