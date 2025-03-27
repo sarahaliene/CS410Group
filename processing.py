@@ -1,5 +1,6 @@
 import nltk
 import os
+import pandas as pd
 from nltk.corpus import twitter_samples
 from nltk.twitter import json2csv
 from nltk.tokenize import TweetTokenizer
