@@ -13,8 +13,8 @@ from nltk.tokenize import TweetTokenizer
 #Word stemmer
 from nltk.stem.snowball import EnglishStemmer
 
-#Words considered valid words by nltk
-from nltk.corpus import words as nltkwords
+#Words considered valid words by nltk, may take too much time to run
+#from nltk.corpus import words as nltkwords
 
 #NLTK Sentiment Analyzer tool
 from nltk.sentiment import sentiment_analyzer
@@ -33,3 +33,11 @@ nltk.download('stopwords')
 
 #Use stemmer.stem(word) to stem word
 stemmer = EnglishStemmer()
+
+#Twitter specific imports
+#Twitter corpus from NLTK
+#twitter_samples includes 3 files for negative, positive, and tweets
+#.strings accesses text fields
+from nltk.corpus import twitter_samples
+nltk.download("twitter_samples")
+from nltk.twitter import json2csv
