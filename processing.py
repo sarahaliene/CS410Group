@@ -102,7 +102,8 @@ tweets["text"] = tweets["text"].apply(remove_stopwords)
 # neg_tweets["text"] = neg_tweets["text"].apply(keep_alnum)
 # tweets["text"] = tweets["text"].apply(keep_alnum)
 
-# Save the processed data
-pos_tweets.to_csv("data/pos_tweets_processed.csv", index=False)
-neg_tweets.to_csv("data/neg_tweets_processed.csv", index=False)
-tweets.to_csv("data/tweets_processed.csv", index=False)
+# Save the processed data in a new folder
+os.makedirs("processed_data", exist_ok=True)
+pos_tweets.to_csv("processed_data/pos_tweets.csv", index=False)
+neg_tweets.to_csv("processed_data/neg_tweets.csv", index=False)
+tweets.to_csv("processed_data/tweets.csv", index=False)
