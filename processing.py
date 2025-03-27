@@ -2,9 +2,11 @@ import nltk
 import os
 import pandas as pd
 from nltk.corpus import twitter_samples
+from nltk.corpus import stopwords
 from nltk.twitter import json2csv
 from nltk.tokenize import TweetTokenizer
 nltk.download("twitter_samples")
+nltk.download('stopwords')
 
 # Ensure the 'data' folder exists
 os.makedirs("data", exist_ok=True)
