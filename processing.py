@@ -29,3 +29,20 @@ with open(tweet_file) as fp:
 
 tokenizer = TweetTokenizer(strip_handles = True, reduce_len = True)
 
+pos_dataset = pd.read_csv("pos_tweets_text.csv")
+neg_dataset = pd.read_csv("neg_tweets_text.csv")
+
+for index, row in pos_dataset.iterrows():
+	line = row[0]
+	text_chunk = tokenizer.tokenize(line)
+
+	new_text_chunk = []
+	
+
+	for token in text_chunk:
+
+		if "http" not in token:
+			new_text_chunk.append(token)
+		else:
+			continue
+
