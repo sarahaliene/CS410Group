@@ -49,4 +49,5 @@ for index, row in pos_dataset.iterrows():
 			new_text_chunk.append(token)
 		else:
 			continue
+	pos_tweet_list.append(new_text_chunk)
 
