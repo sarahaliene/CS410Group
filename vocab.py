@@ -12,4 +12,4 @@ def create_vocab(tweet_list):
 	top_200 = tweet_counter.most_common(200)
 
 
-return top_200
+	return top_200
