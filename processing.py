@@ -69,3 +69,40 @@ for index, row in neg_dataset.iterrows():
 			continue
 	neg_tweet_list.append(new_text_chunk)
 
+
+
+# tokenize the tweets
+def tweet_tokenizer(tweet):
+	return tokenizer.tokenize(tweet)
+
+# Read the data
+pos_tweets = pd.read_csv("data/pos_tweets_text.csv")
+neg_tweets = pd.read_csv("data/neg_tweets_text.csv")
+tweets = pd.read_csv("data/tweets_text.csv")
+
+# Tokenize the tweets
+pos_tweets["text"] = pos_tweets["text"].apply(tweet_tokenizer)
+neg_tweets["text"] = neg_tweets["text"].apply(tweet_tokenizer)
+tweets["text"] = tweets["text"].apply(tweet_tokenizer)
+
+# remove stopwords
+stop_words = set(stopwords.words("english"))
+
+def remove_stopwords(tweet):
+	return [word for word in tweet if word not in stop_words]
+
+pos_tweets["text"] = pos_tweets["text"].apply(remove_stopwords)
+neg_tweets["text"] = neg_tweets["text"].apply(remove_stopwords)
+tweets["text"] = tweets["text"].apply(remove_stopwords)
+
+# keep only alnum words
+# def keep_alnum(tweet):
+# 	return [word for word in tweet if word.isalnum()]
+# pos_tweets["text"] = pos_tweets["text"].apply(keep_alnum)
+# neg_tweets["text"] = neg_tweets["text"].apply(keep_alnum)
+# tweets["text"] = tweets["text"].apply(keep_alnum)
+
+# Save the processed data
+pos_tweets.to_csv("data/pos_tweets_processed.csv", index=False)
+neg_tweets.to_csv("data/neg_tweets_processed.csv", index=False)
+tweets.to_csv("data/tweets_processed.csv", index=False)
