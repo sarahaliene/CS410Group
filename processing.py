@@ -1,6 +1,7 @@
 import nltk
 import os
 import pandas as pd
+from vocab import create_vocab
 from nltk.corpus import twitter_samples
 from nltk.corpus import stopwords
 from nltk.twitter import json2csv
@@ -107,3 +108,7 @@ os.makedirs("processed_data", exist_ok=True)
 pos_tweets.to_csv("processed_data/pos_tweets.csv", index=False)
 neg_tweets.to_csv("processed_data/neg_tweets.csv", index=False)
 tweets.to_csv("processed_data/tweets.csv", index=False)
+
+#Vocab
+top_pos = create_vocab(pos_tweets)
+top_neg = create_vocab(neg_tweets)
