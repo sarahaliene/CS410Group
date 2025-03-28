@@ -1,6 +1,6 @@
 from collections import Counter
 
-def create_vocab(tweet_list):
+def create_vocab(tweet_list, n):
 
 	tweet_counter = Counter()
 
@@ -9,7 +9,7 @@ def create_vocab(tweet_list):
 		tweet_counter.update(tweet)
 
 
-	top_200 = tweet_counter.most_common(200)
+	top_200 = tweet_counter.most_common(n)
 
 
 	return top_200
