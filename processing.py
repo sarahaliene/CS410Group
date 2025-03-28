@@ -36,39 +36,39 @@ pos_dataset = pd.read_csv("pos_tweets_text.csv")
 neg_dataset = pd.read_csv("neg_tweets_text.csv")
 
 #Pos_dataset
-pos_tweet_list = []
-for index, row in pos_dataset.iterrows():
-	line = row[0]
-	text_chunk = tokenizer.tokenize(line)
+#pos_tweet_list = []
+#for index, row in pos_dataset.iterrows():
+	#line = row[0]
+	#text_chunk = tokenizer.tokenize(line)
 
-	new_text_chunk = []
+	#new_text_chunk = []
 	
 #Remove tokens with "http"
-	for token in text_chunk:
+	#for token in text_chunk:
 
-		if "http" not in token:
-			new_text_chunk.append(token)
-		else:
-			continue
-	pos_tweet_list.append(new_text_chunk)
+		#if "http" not in token:
+			#new_text_chunk.append(token)
+		#else:
+			#continue
+	#pos_tweet_list.append(new_text_chunk)
 
 
 #Neg_dataset
-neg_tweet_list = []
-for index, row in neg_dataset.iterrows():
-	line = row[0]
-	text_chunk = tokenizer.tokenize(line)
+#neg_tweet_list = []
+#for index, row in neg_dataset.iterrows():
+	#line = row[0]
+	#text_chunk = tokenizer.tokenize(line)
 
-	new_text_chunk = []
+	#new_text_chunk = []
 	
 #Remove tokens with "http"
-	for token in text_chunk:
+	#for token in text_chunk:
 
-		if "http" not in token:
-			new_text_chunk.append(token)
-		else:
-			continue
-	neg_tweet_list.append(new_text_chunk)
+		#if "http" not in token:
+			#new_text_chunk.append(token)
+		#else:
+			#continue
+	#neg_tweet_list.append(new_text_chunk)
 
 pos_dataset = pd.read_csv("data/pos_tweets_text.csv")
 neg_dataset = pd.read_csv("data/neg_tweets_text.csv")
