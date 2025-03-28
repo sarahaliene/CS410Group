@@ -128,6 +128,6 @@ pos_tweets.to_csv("processed_data/pos_tweets.csv", index=False)
 neg_tweets.to_csv("processed_data/neg_tweets.csv", index=False)
 tweets.to_csv("processed_data/tweets.csv", index=False)
 
-#Vocab
-top_pos = create_vocab(pos_tweets)
-top_neg = create_vocab(neg_tweets)
+#Vocab - takes n as parameter
+top_pos = create_vocab(pos_tweets, 200)
+top_neg = create_vocab(neg_tweets, 200)
