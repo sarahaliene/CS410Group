@@ -2,7 +2,7 @@ import os
 import pickle
 import pandas as pd
 from collections import Counter
-#is functioning properly as of 5-5-25
+
 
 def naive_bayes_tweet(pos_tweets_file_name, neg_tweets_file_name, laplace):
 
@@ -13,10 +13,10 @@ def naive_bayes_tweet(pos_tweets_file_name, neg_tweets_file_name, laplace):
   pos_tweets_list = []
   neg_tweets_list = []
 
-  for index, row in pos_tweets.iterrows():
+  for index, row in pos_tweets.iloc[1:].iterrows():
     pos_tweets_list.append(row)
 
-  for index, row in neg_tweets.iterrows():
+  for index, row in neg_tweets.iloc[1:].iterrows():
     neg_tweets_list.append(row)
 
   #Get the number of pos & neg tweets
