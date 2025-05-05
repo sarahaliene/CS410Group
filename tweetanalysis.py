@@ -1,17 +1,19 @@
 import os
 from naivebayestweets import naive_bayes_tweet
 from vocab import create_vocab
+from predicttweet import predict_tweet
 
 #Run entire processing script
 with open("processing.py") as file:
     exec(file.read())
 
+#Set path for accessing processed csv files
 current_path = os.path.dirname(__file__)
-
 pos_tweets = current_path + "/processed_data/pos_tweets.csv"
 neg_tweets = current_path + "/processed_data/neg_tweets.csv"
 test_tweets = current_path + "/processed_data/tweets.csv"
 
+#Initialize naive_bayes values
 naive_bayes_tweet(pos_tweets, neg_tweets, 1.0)
 
 #Get top 200 words for pos and neg tweets
