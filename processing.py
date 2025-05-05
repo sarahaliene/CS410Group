@@ -1,6 +1,7 @@
 import nltk
 import os
 import pandas as pd
+import re
 from vocab import create_vocab
 from nltk.corpus import twitter_samples
 from nltk.corpus import stopwords
