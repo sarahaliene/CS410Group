@@ -2,6 +2,7 @@ import os
 from naivebayestweets import naive_bayes_tweet
 from vocab import create_vocab
 from predicttweet import predict_tweet
+from testing import test_predictions
 
 #Run entire processing script
 with open("processing.py") as file:
@@ -23,3 +24,13 @@ top_200_neg = create_vocab(neg_tweets)
 #Print top 10 of each
 print("Top 10 Positive Words:", top_200_pos[:10])
 print("Top 10 Negative Words:", top_200_neg[:10])
+
+#Print predictions for pre-labeled files
+print("Testing pre-labeled positive tweets using Naive Bayes")
+test_predictions(pos_tweets)
+
+print("Testing pre-labeled negative tweets using Naive Bayes")
+test_predictions(neg_tweets)
+
+print("Predictions for unlabeled test file tweets using Naive Bayes")
+test_predictions(test_tweets)
