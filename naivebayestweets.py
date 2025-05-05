@@ -3,13 +3,26 @@ import pickle
 from collections import Counter
 
 
-def naive_bayes_tweet(pos_tweets, neg_tweets, laplace):
+def naive_bayes_tweet(pos_tweets_file_name, neg_tweets_file_name, laplace):
+
+  pos_tweets = pd.read_csv(pos_tweets_file_name)
+  neg_tweets = pd.read_csv(neg_tweets_file_name)
+
+  #Lists for holding tweets
+  pos_tweets_list = []
+  neg_tweets_list = []
+
+  for index, row in pos_tweets.iterrows():
+    pos_tweets_list.append(row)
+
+  for index, row in neg_tweets.iterrows():
+    neg_tweets_list.append(row)
 
   #Get the number of pos & neg tweets
-  total_pos_tweets = len(pos_tweets)
-  total_neg_tweets = len(neg_tweets)
+  total_pos_tweets = len(pos_tweets_list)
+  total_neg_tweets = len(neg_tweets_list)
 
-  #Lists for word counts
+  #Lists for pos and neg words
   pos_word_list = []
   neg_word_list = []
 
@@ -18,14 +31,14 @@ def naive_bayes_tweet(pos_tweets, neg_tweets, laplace):
   neg_word_set = set()
   total_word_set = set()
 
-  for tweet in pos_tweets:
+  for tweet in pos_tweets_list:
     for word in tweet:
       pos_word_list.append(word)
       pos_word_set.add(word)
       total_word_set.add(word)
         
 
-  for tweet in neg_tweets:
+  for tweet in neg_tweets_list:
     for word in tweet:
       neg_word_list.append(word)
       neg_word_set.add(word)
