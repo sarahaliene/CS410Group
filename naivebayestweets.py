@@ -2,7 +2,7 @@ import os
 import pickle
 import pandas as pd
 from collections import Counter
-
+#is functioning properly as of 5-5-25
 
 def naive_bayes_tweet(pos_tweets_file_name, neg_tweets_file_name, laplace):
 
