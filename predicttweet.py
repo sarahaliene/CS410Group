@@ -1,6 +1,6 @@
 import pickle
 import math
-
+#is functioning properly as of 5-5-25
 
 def predict_tweet(tweet):
   #Unpickle? the files needed for computations
