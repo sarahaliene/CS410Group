@@ -1,5 +1,6 @@
 import os
 from naivebayestweets import naive_bayes_tweet
+from vocab import create_vocab
 
 #Run entire processing script
 with open("processing.py") as file:
@@ -12,3 +13,11 @@ neg_tweets = current_path + "/processed_data/neg_tweets.csv"
 test_tweets = current_path + "/processed_data/tweets.csv"
 
 naive_bayes_tweet(pos_tweets, neg_tweets, 1.0)
+
+#Get top 200 words for pos and neg tweets
+top_200_pos = create_vocab(pos_tweets)
+top_200_neg = create_vocab(neg_tweets)
+
+#Print top 10 of each
+print("Top 10 Positive Words:", top_200_pos[:10])
+print("Top 10 Negative Words:", top_200_neg[:10])
