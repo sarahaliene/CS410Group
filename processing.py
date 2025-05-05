@@ -10,8 +10,6 @@ from nltk.tokenize import TweetTokenizer
 nltk.download("twitter_samples")
 nltk.download('stopwords')
 
-#Functions as of 5-5-25
-
 #Hyperlinks
 #hyperlinks = r"https?:\/\/[^\s]+[\r\n]*"
 
@@ -19,11 +17,12 @@ nltk.download('stopwords')
 stop_words = set(stopwords.words("english"))
 
 #Set up url words to remove
-stop_words.add("www")
-stop_words.add("http")
-stop_words.add("https")
-stop_words.add("href")
-stop_words.add("ahref")
+url_words = set()
+url_words.add("www")
+url_words.add("http")
+url_words.add("https")
+url_words.add("href")
+url_words.add("ahref")
 
 #Set up TweetTokenizer
 tokenizer = TweetTokenizer(strip_handles = True, reduce_len = True)
@@ -42,6 +41,25 @@ def remove_stopwords(tweet):
 #Function to tokenize the tweets
 def tweet_tokenizer(tweet):
     return tokenizer.tokenize(tweet)
+
+def remove_hyperlinks(tweet):
+
+    new_tweet_list = []
+
+    for token in tweet:
+
+        for chunk in url_words:
+
+            if chunk in token:
+                            
+                token = 'd3l3t3'
+
+        if token != 'd3l3t3':
+
+            new_tweet_list.append(token)
+
+    return(new_tweet_list)
+
 
 # Ensure the 'data' folder exists
 os.makedirs("data", exist_ok=True)
@@ -108,17 +126,8 @@ with open(tweet_file) as fp:
 #neg_dataset = pd.read_csv("data/neg_tweets_text.csv")
 #tweets = pd.read_csv("data/tweets_text.csv")
 
-#Apply the remove_hyperlinks function to the tweets
-#pos_dataset = pos_dataset.applymap(remove_hyperlinks)
-#neg_dataset = neg_dataset.applymap(remove_hyperlinks)
-#tweets = tweets.applymap(remove_hyperlinks)
 
-#Put the results back into the csv files
-#pos_dataset.to_csv('data/pos_tweets_text.csv', index=False)
-#neg_dataset.to_csv('data/neg_tweets_text.csv', index=False)
-#tweets.to_csv('data/tweets_text.csv', index=False)
-
-#Read the data (again....)
+#Read the data
 pos_tweets = pd.read_csv("data/pos_tweets_text.csv")
 neg_tweets = pd.read_csv("data/neg_tweets_text.csv")
 tweets = pd.read_csv("data/tweets_text.csv")
@@ -133,6 +142,11 @@ pos_tweets["text"] = pos_tweets["text"].apply(remove_stopwords)
 neg_tweets["text"] = neg_tweets["text"].apply(remove_stopwords)
 tweets["text"] = tweets["text"].apply(remove_stopwords)
 
+#Apply the remove_hyperlinks function to the tweets
+pos_tweets["text"] = pos_tweets["text"].apply(remove_hyperlinks)
+neg_tweets["text"] = neg_tweets["text"].apply(remove_hyperlinks)
+tweets["text"] = tweets["text"].apply(remove_hyperlinks)
+
 # keep only alnum words
 # def keep_alnum(tweet):
 #   return [word for word in tweet if word.isalnum()]
@@ -146,8 +160,5 @@ pos_tweets.to_csv("processed_data/pos_tweets.csv", index=False)
 neg_tweets.to_csv("processed_data/neg_tweets.csv", index=False)
 tweets.to_csv("processed_data/tweets.csv", index=False)
 
-#Vocab
-#top_pos = create_vocab(pos_tweets)
-#top_neg = create_vocab(neg_tweets)
 
 print("Finished processing")
