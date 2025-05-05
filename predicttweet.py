@@ -1,6 +1,6 @@
 import pickle
 import math
-#is functioning properly as of 5-5-25
+
 
 def predict_tweet(tweet):
   #Unpickle? the files needed for computations
@@ -19,23 +19,18 @@ def predict_tweet(tweet):
 
   for word in tweet:
 
-    prob_pos = pos_prob.get(word, 0)
-    prob_neg = neg_prob.get(word, 0)
-
-    if prob_pos == 0:
+    if word in pos_prob:
+      prob_pos = pos_prob.get(word)
+    else:
       prob_pos = pos_prob.get("UNK")
-      pos_words.append(prob_pos)
 
+    if word in neg_prob:
+      prob_neg = neg_prob.get(word)
     else:
-      pos_words.append(prob_pos)
-
-    if prob_neg == 0:
       prob_neg = neg_prob.get("UNK")
-      neg_words.append(prob_neg)
 
-    else:
-      neg_words.append(prob_neg)
-
+    pos_words.append(prob_pos)
+    neg_words.append(prob_neg)
 
   #Calculate posterior probability
     pos_post = 0
@@ -54,7 +49,3 @@ def predict_tweet(tweet):
       return("positive")
     else:
       return("negative")
-
-
-#pred = predict_tweet("weird prediction here :)")
-#print(pred)
