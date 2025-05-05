@@ -2,6 +2,7 @@ import os
 from naivebayestweets import naive_bayes_tweet
 from vocab import create_vocab
 from predicttweet import predict_tweet
+from vadersentiment import get_vader_sentiment
 from testing import test_predictions
 
 #Run entire processing script
