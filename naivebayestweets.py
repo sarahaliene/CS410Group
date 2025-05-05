@@ -4,20 +4,13 @@ import pandas as pd
 from collections import Counter
 
 
-def naive_bayes_tweet(pos_tweets_file_name, neg_tweets_file_name, laplace):
+def naive_bayes_tweet(laplace):
 
-  pos_tweets = pd.read_csv(pos_tweets_file_name)
-  neg_tweets = pd.read_csv(neg_tweets_file_name)
+  pos_tweets_file = open('pos_tweets.pkl', 'rb')    
+  pos_tweets_list = pickle.load(pos_tweets_file)
 
-  #Lists for holding tweets
-  pos_tweets_list = []
-  neg_tweets_list = []
-
-  for index, row in pos_tweets.iloc[1:].iterrows():
-    pos_tweets_list.append(row)
-
-  for index, row in neg_tweets.iloc[1:].iterrows():
-    neg_tweets_list.append(row)
+  neg_tweets_file = open('neg_tweets.pkl', 'rb')    
+  neg_tweets_list = pickle.load(neg_tweets_file)
 
   #Get the number of pos & neg tweets
   total_pos_tweets = len(pos_tweets_list)
