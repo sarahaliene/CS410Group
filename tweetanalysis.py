@@ -4,6 +4,7 @@ from vocab import create_vocab
 from predicttweet import predict_tweet
 from testing import test_predictions
 from vadersentiment import get_vader_sentiment
+from testing import compare_vader_bayes
 
 #Run entire processing script
 with open("processing.py") as file:
@@ -30,22 +31,26 @@ print()
 
 #Print predictions for pre-labeled files
 print("Testing pre-labeled positive tweets using Naive Bayes")
-test_predictions('pos_tweets.pkl')
+pos_seen = test_predictions('pos_tweets.pkl')
+compare_vader_bayes(pos_seen)
 
 print()
 
 print("Testing pre-labeled negative tweets using Naive Bayes")
-test_predictions('neg_tweets.pkl')
+neg_seen = test_predictions('neg_tweets.pkl')
+compare_vader_bayes(neg_seen)
 
 print()
 
 print("Testing pre-labeled unseen positive tweets using Naive Bayes")
-test_predictions('pos_test_tweets.pkl')
+pos_unseen = test_predictions('pos_test_tweets.pkl')
+compare_vader_bayes(pos_unseen)
 
 print()
 
 print("Testing pre-labeled unseen negative tweets using Naive Bayes")
-test_predictions('neg_test_tweets.pkl')
+neg_unseen = test_predictions('neg_test_tweets.pkl')
+compare_vader_bayes(neg_unseen)
 
 print()
 
