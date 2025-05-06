@@ -54,7 +54,7 @@ for index, row in pos_dataset.iterrows():
 #Remove tokens with "http"
     for token in text_chunk:
 
-        if ("http" not in token) and (token not in stop_words):
+        if ("http" not in token) and (token not in stop_words) and (len(token) > 1):
             new_text_chunk.append(token)
         else:
             continue
@@ -73,12 +73,19 @@ for index, row in neg_dataset.iterrows():
 #Remove tokens with "http"
     for token in text_chunk:
 
-        if ("http" not in token) and (token not in stop_words):
+        if ("http" not in token) and (token not in stop_words) and (len(token) > 1):
             new_text_chunk.append(token)
         else:
             continue
 
     neg_tweet_list.append(new_text_chunk)
+
+#Segment off 1000 of each for testing
+pos_test_list = pos_tweet_list[3999:]
+neg_test_list = neg_tweet_list[3999:]
+
+pos_tweet_list = pos_tweet_list[0:3999]
+neg_tweet_list = neg_tweet_list[0:3999]
 
 #Test dataset
 test_tweet_list = []
@@ -91,7 +98,7 @@ for index, row in test_dataset.iterrows():
 #Remove tokens with "http"
     for token in text_chunk:
 
-        if ("http" not in token) and (token not in stop_words):
+        if ("http" not in token) and (token not in stop_words) and (len(token) > 1):
             new_text_chunk.append(token)
         else:
             continue
@@ -107,6 +114,12 @@ with open('pos_tweets.pkl', 'wb') as fp:
 
 with open('neg_tweets.pkl', 'wb') as fp:
     pickle.dump(neg_tweet_list, fp)
+
+with open('pos_test_tweets.pkl', 'wb') as fp:
+    pickle.dump(pos_test_list, fp)
+
+with open('neg_test_tweets.pkl', 'wb') as fp:
+    pickle.dump(neg_test_list, fp)
 
 with open('tweets.pkl', 'wb') as fp:
     pickle.dump(test_tweet_list, fp)
