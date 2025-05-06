@@ -26,12 +26,28 @@ top_200_neg = create_vocab('neg_tweets.pkl')
 print("Top 10 Positive Words:", top_200_pos[:10])
 print("Top 10 Negative Words:", top_200_neg[:10])
 
+print()
+
 #Print predictions for pre-labeled files
 print("Testing pre-labeled positive tweets using Naive Bayes")
 test_predictions('pos_tweets.pkl')
 
+print()
+
 print("Testing pre-labeled negative tweets using Naive Bayes")
 test_predictions('neg_tweets.pkl')
+
+print()
+
+print("Testing pre-labeled unseen positive tweets using Naive Bayes")
+test_predictions('pos_test_tweets.pkl')
+
+print()
+
+print("Testing pre-labeled unseen negative tweets using Naive Bayes")
+test_predictions('neg_test_tweets.pkl')
+
+print()
 
 print("Predictions for unlabeled test file tweets using Naive Bayes")
 test_predictions('tweets.pkl')
