@@ -2,6 +2,7 @@ import nltk
 import os
 import pandas as pd
 import re
+import string
 import pickle
 from vocab import create_vocab
 from nltk.corpus import twitter_samples
@@ -47,6 +48,7 @@ test_dataset = pd.read_csv("data/tweets_text.csv")
 pos_tweet_list = []
 for index, row in pos_dataset.iterrows():
     line = row[0]
+    line = line.lower()
     text_chunk = tokenizer.tokenize(line)
 
     new_text_chunk = []
@@ -66,6 +68,7 @@ for index, row in pos_dataset.iterrows():
 neg_tweet_list = []
 for index, row in neg_dataset.iterrows():
     line = row[0]
+    line = line.lower()
     text_chunk = tokenizer.tokenize(line)
 
     new_text_chunk = []
@@ -91,6 +94,7 @@ neg_tweet_list = neg_tweet_list[0:3999]
 test_tweet_list = []
 for index, row in test_dataset.iterrows():
     line = row[0]
+    line = line.lower()
     text_chunk = tokenizer.tokenize(line)
 
     new_text_chunk = []
